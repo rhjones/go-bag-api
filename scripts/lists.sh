@@ -3,7 +3,7 @@ curl --include --request POST http://localhost:3000/lists \
   --header "Content-Type: application/json" \
   --data '{
     "list": {
-      "title": "Maine Camping July 2016",
+      "title": "White Mountains May 2016",
       "user_id": 1
     }
   }'
