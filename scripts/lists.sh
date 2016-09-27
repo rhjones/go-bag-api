@@ -3,7 +3,8 @@ curl --include --request POST http://localhost:3000/lists \
   --header "Content-Type: application/json" \
   --data '{
     "list": {
-      "title": "Maine Camping July 2016"
+      "title": "Maine Camping July 2016",
+      "user_id": 1
     }
   }'
 
@@ -12,7 +13,8 @@ curl --include --request PATCH http://localhost:3000/lists/1 \
   --header "Content-Type: application/json" \
   --data '{
     "list": {
-      "title": "Maine Camping June 2016"
+      "title": "Maine Camping June 2016",
+      "user_id": 1
     }
   }'
 
