@@ -1,4 +1,4 @@
-class ItemsController < ApplicationController
+class ItemsController < ProtectedController
   before_action :set_item, only: [:show, :update, :destroy]
 
   # GET /items
@@ -30,8 +30,6 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
-    @item = Item.find(params[:id])
-
     if @item.update(item_params)
       head :no_content
     else
@@ -49,11 +47,11 @@ class ItemsController < ApplicationController
 
   private
 
-    def set_item
-      @item = Item.find(params[:id])
-    end
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
-    def item_params
-      params.require(:item).permit(:name)
-    end
+  def item_params
+    params.require(:item).permit(:name)
+  end
 end
