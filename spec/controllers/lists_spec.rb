@@ -5,7 +5,7 @@ RSpec.describe ListsController do
   def list_params
     {
       title: 'Hawaii Trip',
-      user_id: 1
+      user_id: User.first.id
     }
   end
 
@@ -62,9 +62,9 @@ RSpec.describe ListsController do
   end
 
   describe 'POST create' do
-    before(:each) do
-      post :create, list: list_params, format: :json
-    end
+    # before(:each) do
+    #   post :create, list: list_params, format: :json
+    # end
 
     skip 'is successful' do
     end
@@ -78,9 +78,9 @@ RSpec.describe ListsController do
       { title: 'Scotland Trip' }
     end
 
-    before(:each) do
-      patch :update, id: list.id, list: list_diff, format: :json
-    end
+    # before(:each) do
+    #   patch :update, id: list.id, list: list_diff, format: :json
+    # end
 
     skip 'is successful' do
     end
