@@ -1,11 +1,13 @@
-class ContentsController < ApplicationController
+class ContentsController < ProtectedController
   before_action :set_content, only: [:show, :update, :destroy]
 
-  # GET /contents
-  # GET /contents.json
-  def index
-    @contents = Content.all
-
+  # GET /contents/list/7
+  # GET TK
+  def index_for_list
+    # some sort of error checking
+    # don't want users to be able to access contents of a list that isn't theirs
+    # do I even need this, or can I just get list.contents? seems better...
+    @contents = Content.where("list_id = '#{params[:list_id]}'")
     render json: @contents
   end
 
@@ -30,8 +32,6 @@ class ContentsController < ApplicationController
   # PATCH/PUT /contents/1
   # PATCH/PUT /contents/1.json
   def update
-    @content = Content.find(params[:id])
-
     if @content.update(content_params)
       head :no_content
     else
@@ -49,11 +49,11 @@ class ContentsController < ApplicationController
 
   private
 
-    def set_content
-      @content = Content.find(params[:id])
-    end
+  def set_content
+    @content = Content.find(params[:id])
+  end
 
-    def content_params
-      params.require(:content).permit(:item_id, :list_id, :packed)
-    end
+  def content_params
+    params.require(:content).permit(:item_id, :list_id, :packed)
+  end
 end
