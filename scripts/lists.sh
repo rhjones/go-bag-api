@@ -9,7 +9,7 @@ curl --include --request POST http://localhost:3000/lists \
   }'
 
 # update
-curl --include --request PATCH http://localhost:3000/lists/1 \
+curl --include --request PATCH http://localhost:3000/lists/3 \
   --header "Content-Type: application/json" \
   --data '{
     "list": {
@@ -22,7 +22,7 @@ curl --include --request PATCH http://localhost:3000/lists/1 \
 curl --include --request GET http://localhost:3000/lists
 
 #show
-curl --include --request GET http://localhost:3000/lists/1
+curl --include --request GET http://localhost:3000/lists/2
 
 #delete
 curl --include --request DELETE http://localhost:3000/lists/1
