@@ -1,13 +1,4 @@
-# create
-curl --include --request POST http://localhost:3000/contents \
-  --header "Content-Type: application/json" \
-  --data '{
-    "content": {
-      "item_id": "4",
-      "list_id": "4",
-      "packed": false
-    }
-  }'
+
 
 # update
 curl --include --request PATCH http://localhost:3000/contents/1 \
