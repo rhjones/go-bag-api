@@ -6,6 +6,12 @@ class ItemsController < ProtectedController
   def index
     @items = Item.all
 
+    @items = if params[:query]
+               Item.search(params[:query]).order('name ASC')
+             else
+               Item.all.order('name ASC')
+             end
+
     render json: @items
   end
 
