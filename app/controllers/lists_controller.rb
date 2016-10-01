@@ -4,7 +4,7 @@ class ListsController < ProtectedController
   # GET /lists
   # GET /lists.json
   def index
-    @lists = current_user.lists.all
+    @lists = current_user.lists.all.order(created_at: :desc)
 
     render json: @lists
   end
