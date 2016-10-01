@@ -1,5 +1,4 @@
 class ContentSerializer < ActiveModel::Serializer
-  attributes :id, :packed
-  has_one :item
+  attributes :id, :packed, :item
   has_one :list
 end
