@@ -1,6 +1,6 @@
 class Content < ActiveRecord::Base
   def self.default_scope
-    order('updated_at DESC')
+    order(:packed, updated_at: :desc)
   end
 
   belongs_to :item, inverse_of: :contents
