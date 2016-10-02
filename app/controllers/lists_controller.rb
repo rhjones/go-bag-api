@@ -1,5 +1,5 @@
 class ListsController < ProtectedController
-  before_action :set_list, only: [:show, :update, :destroy]
+  before_action :set_list, only: [:show, :clone, :update, :destroy]
 
   # GET /lists
   # GET /lists.json
@@ -24,6 +24,17 @@ class ListsController < ProtectedController
       render json: @list, status: :created, location: @list
     else
       render json: @list.errors, status: :unprocessable_entity
+    end
+  end
+
+  # POST /clone/1
+  def clone
+    @cloned_list = @list.deep_clone include: :contents, except: :title
+    @cloned_list.title = "Copy of #{current_user.lists.find(params[:id]).title}"
+    if @cloned_list.save
+      render json: @cloned_list, status: :created, location: @cloned_list
+    else
+      render json: @cloned_list.errors, status: :unprocessable_entity
     end
   end
 
