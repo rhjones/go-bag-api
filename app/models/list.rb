@@ -4,4 +4,8 @@ class List < ActiveRecord::Base
   validates :title, uniqueness: { scope: :user_id }
   has_many :items, through: :contents
   has_many :contents, dependent: :destroy
+
+  def self.default_scope
+    order(updated_at: :desc)
+  end
 end
