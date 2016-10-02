@@ -1,8 +1,6 @@
-[![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
-
 # Go Bag API
 
-A Rails API for Go Bag, a packing list app. Includes authentication.
+A Rails API for [Go Bag](https://github.com/rebekahheacock/go-bag), a packing list app. Includes authentication.
 
 ## Dependencies
 
@@ -11,14 +9,12 @@ A Rails API for Go Bag, a packing list app. Includes authentication.
 -   [`active_model_serializers`](https://github.com/rails-api/active_model_serializers)
 -   [`ruby`](https://www.ruby-lang.org/en/)
 -   [`postgres`](http://www.postgresql.org)
+-   [`deep_cloneable`](https://github.com/moiristo/deep_cloneable)
 
-Until Rails 5 is released, this template should follow the most recent released
-version of Rails 4, as well as track `master` branches for `rails-api` and
-`active_model_serializers`.
 
 ## API Documentation
 
-Scripts are included in [`scripts`](scripts) to test built-in actions (or, TBD, in RSpec).
+Scripts are included in [`scripts`](scripts) to test built-in actions.
 
 ### Authentication
 
@@ -208,6 +204,32 @@ Content-Type: application/json; charset=utf-8
   }
 }
 ```
+
+### Lists
+
+| Verb   | URI Pattern | Controller#Action |
+|--------|-------------|-------------------|
+| GET    | `/lists`    | `lists#index`     |
+| GET    | `/lists/1`  | `lists#show`      |
+| POST   | `/lists`    | `lists#create`    |
+| POST   | `/clone/1`  | `lists#clone`     |
+| PATCH  | `/lists/1`  | `lists#update`    |
+| DELETE | `/lists/1`  | `lists#destroy`   |
+
+#### GET /lists
+
+Request: 
+
+```sh
+curl --include --request GET http://localhost:3000/lists \
+  --header "Authorization: Token token=$TOKEN"
+```
+
+```sh
+TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/user.sh
+```
+
+
 
 ## [License](LICENSE)
 
