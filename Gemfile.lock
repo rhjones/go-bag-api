@@ -41,6 +41,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    amoeba (3.0.0)
+      activerecord (>= 3.2.6)
     arel (6.0.3)
     bcrypt (3.1.11)
     builder (3.2.2)
@@ -162,6 +164,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
+  amoeba (~> 3.0)
   bcrypt (~> 3.1.11)
   byebug (~> 8.2.2)
   dotenv-rails (~> 2.1, >= 2.1.1)
