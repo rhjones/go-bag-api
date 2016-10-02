@@ -1,21 +1,5 @@
 class ContentsController < ProtectedController
-  before_action :set_content, only: [:show, :update, :destroy]
-
-  # GET /contents/list/7
-  # GET TK
-  def index_for_list
-    # some sort of error checking
-    # don't want users to be able to access contents of a list that isn't theirs
-    # do I even need this, or can I just get list.contents? seems better...
-    @contents = Content.where("list_id = '#{params[:list_id]}'")
-    render json: @contents
-  end
-
-  # GET /contents/1
-  # GET /contents/1.json
-  def show
-    render json: @content
-  end
+  before_action :set_content, only: [:update, :destroy]
 
   # POST /contents
   # POST /contents.json
