@@ -3,6 +3,6 @@ curl --include --request PATCH http://localhost:3000/items/$ID \
   --header "Authorization: Token token=$TOKEN" \
   --data '{
     "item": {
-      "name": "soap"
+      "name": "soapppp"
     }
   }'

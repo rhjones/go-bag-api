@@ -320,7 +320,7 @@ Content-Type: application/json; charset=utf-8
 
 #### POST /clone/1
 
-A `POST` request to `/clone/:id` clones the provided list with all of its associations. The cloned list's title will be "Copy of [original list title."
+A `POST` request to `/clone/:id` clones the provided list with all of its associations. The cloned list's title will be "Copy of [original list's title]."
 
 Request:
 
@@ -382,7 +382,177 @@ curl --include --request DELETE http://localhost:3000/lists/$ID \
 ```
 
 ```sh
-ID=4 TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/list-destroy.sh
+ID=1 TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/list-destroy.sh
+```
+
+Response:
+```md
+HTTP/1.1 204 No Content
+```
+
+### Items
+
+| Verb   | URI Pattern      | Controller#Action |
+|--------|------------------|-------------------|
+| GET    | `/items`         | `lists#index`     |
+| GET    | `/items/?query=j | `items#index      |
+| GET    | `/items/1`       | `lists#show`      |
+| POST   | `/items`         | `lists#create`    |
+| PATCH  | `/items/1`       | `lists#update`    |
+| DELETE | `/items/1`       | `lists#destroy`   |
+
+#### GET /items
+
+Request:
+```sh
+curl --include --request GET http://localhost:3000/items
+```
+
+```sh
+scripts item-index.sh
+```
+
+Response:
+```md
+HTTP/1.1 200 OK 
+Content-Type: application/json; charset=utf-8
+
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "jacket"
+    },
+    {
+      "id": 2,
+      "name": "laptop"
+    },
+    {
+      "id": 3,
+      "name": "jeans"
+    }
+  ]
+}
+```
+
+#### GET /items?query=j
+
+Request:
+```sh
+curl --include --request GET http://localhost:3000/items?query=$QUERY
+```
+
+```sh
+QUERY=j scripts/item-search.sh
+```
+
+Response:
+```md
+HTTP/1.1 200 OK 
+Content-Type: application/json; charset=utf-8
+
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "jacket"
+    },
+    {
+      "id": 3,
+      "name": "jeans"
+    }
+  ]
+}
+```
+
+#### GET /items/1
+
+Request:
+```sh
+curl --include --request GET http://localhost:3000/items/$ID
+```
+
+```sh
+ID=1 scripts/item-show.sh
+```
+
+Response:
+```md
+HTTP/1.1 200 OK 
+Content-Type: application/json; charset=utf-8
+
+{
+  "item": {
+    "id": 1,
+    "name": "jacket"
+  }
+}
+```
+
+#### POST /items
+
+Request:
+```sh
+curl --include --request POST http://localhost:3000/items \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Token token=$TOKEN" \
+  --data '{
+    "item": {
+      "name": "shirt"
+    }
+  }'
+```
+
+```sh
+TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/item-create.sh
+```
+
+Response: 
+```md
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+
+{
+  "item": {
+    "id": 4,
+    "name": "shirt"
+  }
+}
+```
+
+#### PATCH /items/1
+
+Request:
+```sh
+curl --include --request PATCH http://localhost:3000/items/$ID \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Token token=$TOKEN" \
+  --data '{
+    "item": {
+      "name": "power adapter"
+    }
+  }'
+```
+
+```sh
+ID=1 TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/item-update.sh
+```
+
+Response: 
+```md
+HTTP/1.1 204 No Content
+```
+
+#### DELETE /items/1
+
+Request:
+```sh
+curl --include --request DELETE http://localhost:3000/items/$ID \
+  --header "Authorization: Token token=$TOKEN"
+```
+
+```sh
+ID=1 TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/item-destroy.sh
 ```
 
 Response:
