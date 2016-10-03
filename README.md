@@ -392,14 +392,14 @@ HTTP/1.1 204 No Content
 
 ### Items
 
-| Verb   | URI Pattern      | Controller#Action |
-|--------|------------------|-------------------|
-| GET    | `/items`         | `lists#index`     |
-| GET    | `/items/?query=j | `items#index      |
-| GET    | `/items/1`       | `lists#show`      |
-| POST   | `/items`         | `lists#create`    |
-| PATCH  | `/items/1`       | `lists#update`    |
-| DELETE | `/items/1`       | `lists#destroy`   |
+| Verb   | URI Pattern       | Controller#Action |
+|--------|-------------------|-------------------|
+| GET    | `/items`          | `lists#index`     |
+| GET    | `/items/?query=j  | `items#index      |
+| GET    | `/items/1`        | `lists#show`      |
+| POST   | `/items`          | `lists#create`    |
+| PATCH  | `/items/1`        | `lists#update`    |
+| DELETE | `/items/1`        | `lists#destroy`   |
 
 #### GET /items
 
