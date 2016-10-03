@@ -22,14 +22,18 @@ Scripts are included in [`scripts`](scripts) to test built-in actions.
 - [Items](#items)
 - [Contents](#contents)
 
+### Data Model
+
+![Go Bag Data Model](go_bag_data_model.png)
+
 ### Authentication
 
 | Verb   | URI Pattern            | Controller#Action |
 |--------|------------------------|-------------------|
-| POST   | `/sign-up`             | `users#signup`    |
-| POST   | `/sign-in`             | `users#signin`    |
-| PATCH  | `/change-password/:id` | `users#changepw`  |
-| DELETE | `/sign-out/:id`        | `users#signout`   |
+| [POST](#post-sign-up)   | `/sign-up`             | `users#signup`    |
+| [POST](#post-sign-in)   | `/sign-in`             | `users#signin`    |
+| [PATCH](#patch-change-passwordid)  | `/change-password/:id` | `users#changepw`  |
+| [DELETE](#delete-sign-outid) | `/sign-out/:id`        | `users#signout`   |
 
 #### POST /sign-up
 
