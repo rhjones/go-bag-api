@@ -275,6 +275,45 @@ Content-Type: application/json; charset=utf-8
     "contents": []
   }
 }
+```
+
+#### POST /lists
+
+Request:
+
+```sh
+curl --include --request POST http://localhost:3000/lists \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Token token=$TOKEN" \
+  --data '{
+    "list": {
+      "title": "Camping"
+    }
+  }'
+```
+
+```sh
+TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/list-create.sh
+```
+
+Response: 
+
+```
+HTTP/1.1 201 Created 
+Content-Type: application/json; charset=utf-8
+
+{
+  "list": {
+    "id": 39,
+    "title": "camping",
+    "contents": []
+  }
+}
+```
+
+
+
+
 
 
 ## [License](LICENSE)

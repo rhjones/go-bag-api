@@ -3,6 +3,6 @@ curl --include --request POST http://localhost:3000/lists \
   --header "Authorization: Token token=$TOKEN" \
   --data '{
     "list": {
-      "title": "White Mountains Sept 2016"
+      "title": "camping"
     }
   }'
