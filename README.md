@@ -16,9 +16,9 @@ A Rails API for [Go Bag](https://github.com/rebekahheacock/go-bag), a packing li
 
 Scripts are included in [`scripts`](scripts) to test built-in actions.
 
-[Authentication](#authentication)
-[Users](#users)
-[Lists](#lists)
+- [Authentication](#authentication)
+- [Users](#users)
+- [Lists](#lists)
 
 ### Authentication
 
@@ -236,7 +236,7 @@ TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/list-index.sh
 ```
 
 Response:
-```
+```md
 {
   "lists": [
     {
@@ -268,7 +268,7 @@ ID=1 TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/list-show.sh
 
 Response:
 
-```
+```md
 HTTP/1.1 200 OK 
 Content-Type: application/json; charset=utf-8
 
@@ -302,7 +302,7 @@ TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/list-create.sh
 
 Response: 
 
-```
+```md
 HTTP/1.1 201 Created 
 Content-Type: application/json; charset=utf-8
 
