@@ -237,6 +237,9 @@ TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/list-index.sh
 
 Response:
 ```md
+HTTP/1.1 200 OK 
+Content-Type: application/json; charset=utf-8
+
 {
   "lists": [
     {
@@ -315,9 +318,36 @@ Content-Type: application/json; charset=utf-8
 }
 ```
 
+#### POST /clone/1
 
+A `POST` request to `/clone/:id` clones the provided list with all of its association. The cloned list's title will be "Copy of [original list title."
 
+Request:
 
+```sh
+curl --include --request POST http://localhost:3000/clone/$ID \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Token token=$TOKEN" \
+  --data '{}'
+```
+
+```sh
+ID=1 TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/list-clone.sh
+```
+
+Response: 
+```md
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+
+{
+  "list": {
+    "id": 3,
+    "title": "Copy of camping",
+    "contents": []
+  }
+}
+```
 
 
 ## [License](LICENSE)
