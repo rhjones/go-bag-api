@@ -218,6 +218,8 @@ Content-Type: application/json; charset=utf-8
 
 #### GET /lists
 
+Users are only permitted to access their own lists.
+
 Request: 
 
 ```sh
@@ -226,9 +228,53 @@ curl --include --request GET http://localhost:3000/lists \
 ```
 
 ```sh
-TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/user.sh
+TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/list-index.sh
 ```
 
+Response:
+```
+{
+  "lists": [
+    {
+      "id":1,
+      "title":"Kampala in January",
+      "contents": []
+    },
+    {
+      "id": 2,
+      "title": "RightsCon 2016",
+      "contents": []
+    },
+```
+
+#### GET /lists/1
+
+Users are only permitted to access their own lists.
+
+Request: 
+
+```sh
+curl --include --request GET http://localhost:3000/lists/$ID \
+  --header "Authorization: Token token=$TOKEN"
+```
+
+```sh
+ID=1 TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/list-show.sh
+```
+
+Response:
+
+```
+HTTP/1.1 200 OK 
+Content-Type: application/json; charset=utf-8
+
+{
+  "list": {
+    "id": 1,
+    "title": "Kampala in January",
+    "contents": []
+  }
+}
 
 
 ## [License](LICENSE)
