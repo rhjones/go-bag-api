@@ -19,6 +19,8 @@ Scripts are included in [`scripts`](scripts) to test built-in actions.
 - [Authentication](#authentication)
 - [Users](#users)
 - [Lists](#lists)
+- [Items](#items)
+- [Contents](#contents)
 
 ### Authentication
 
