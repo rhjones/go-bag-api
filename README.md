@@ -16,6 +16,10 @@ A Rails API for [Go Bag](https://github.com/rebekahheacock/go-bag), a packing li
 
 Scripts are included in [`scripts`](scripts) to test built-in actions.
 
+[Authentication](#authentication)
+[Users](#users)
+[Lists](#lists)
+
 ### Authentication
 
 | Verb   | URI Pattern            | Controller#Action |
