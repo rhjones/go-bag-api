@@ -560,6 +560,75 @@ Response:
 HTTP/1.1 204 No Content
 ```
 
+### Contents
+
+| Verb   | URI Pattern    | Controller#Action  |
+|--------|----------------|--------------------|
+| POST   | `/contents`    | `contents#create`  |
+| PATCH  | `/contents/1`  | `contents#update`  |
+| DELETE | `/contents/1`  | `contents#destroy` |
+
+#### POST /contents
+
+Request:
+```sh
+curl --include --request POST http://localhost:3000/contents \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Token token=$TOKEN" \
+  --data '{
+    "content": {
+      "item_id": "2",
+      "list_id": "1",
+      "packed": false
+    }
+  }'
+```
+
+```sh
+TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/content-create.sh
+```
+
+Response: 
+```md
+HTTP/1.1 201 Created 
+Content-Type: application/json; charset=utf-8
+
+{
+  "content": {
+    "id": 1,
+    "packed": false,
+    "item": {
+      "id":2,
+      "name": "laptop",
+      "created_at": "2016-10-01T16:30:25.224Z",
+      "updated_at": "2016-10-01T16:30:25.224Z"
+    },
+    "list": {
+      "id": 1,
+      "title": "Kampala in January"
+    }
+  }
+}
+```
+
+#### DELETE /contents/1
+
+Request:
+```sh
+curl --include --request DELETE http://localhost:3000/contents/$ID \
+  --header "Authorization: Token token=$TOKEN"
+```
+
+```sh
+ID=1 TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/content-destroy.sh
+```
+
+Response:
+
+```md
+HTTP/1.1 204 No Content
+```
+
 
 ## [License](LICENSE)
 

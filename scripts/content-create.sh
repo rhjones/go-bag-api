@@ -4,7 +4,7 @@ curl --include --request POST http://localhost:3000/contents \
   --data '{
     "content": {
       "item_id": "2",
-      "list_id": "8",
+      "list_id": "1",
       "packed": false
     }
   }'
