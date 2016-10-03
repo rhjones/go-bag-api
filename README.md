@@ -152,8 +152,8 @@ HTTP/1.1 204 No Content
 
 | Verb | URI Pattern | Controller#Action |
 |------|-------------|-------------------|
-| GET  | `/users`    | `users#index`     |
-| GET  | `/users/1`  | `users#show`      |
+| [GET](#get-users)  | `/users`    | `users#index`     |
+| [GET](#get-usersid)  | `/users/1`  | `users#show`      |
 
 #### GET /users
 
@@ -219,12 +219,12 @@ Content-Type: application/json; charset=utf-8
 
 | Verb   | URI Pattern | Controller#Action |
 |--------|-------------|-------------------|
-| GET    | `/lists`    | `lists#index`     |
-| GET    | `/lists/1`  | `lists#show`      |
-| POST   | `/lists`    | `lists#create`    |
-| POST   | `/clone/1`  | `lists#clone`     |
-| PATCH  | `/lists/1`  | `lists#update`    |
-| DELETE | `/lists/1`  | `lists#destroy`   |
+| [GET](#get-lists)    | `/lists`    | `lists#index`     |
+| [GET](#get-lists1)    | `/lists/1`  | `lists#show`      |
+| [POST](#post-lists)   | `/lists`    | `lists#create`    |
+| [POST](#post-clone1)   | `/clone/1`  | `lists#clone`     |
+| [PATCH](#patch-lists1)  | `/lists/1`  | `lists#update`    |
+| [DELETE](#delete-lists1) | `/lists/1`  | `lists#destroy`   |
 
 #### GET /lists
 
@@ -400,12 +400,12 @@ HTTP/1.1 204 No Content
 
 | Verb   | URI Pattern       | Controller#Action |
 |--------|-------------------|-------------------|
-| GET    | `/items`          | `lists#index`     |
-| GET    | `/items/?query=j` | `items#index`     |
-| GET    | `/items/1`        | `lists#show`      |
-| POST   | `/items`          | `lists#create`    |
-| PATCH  | `/items/1`        | `lists#update`    |
-| DELETE | `/items/1`        | `lists#destroy`   |
+| [GET](#get-items)    | `/items`          | `lists#index`     |
+| [GET](#get-itemsqueryj)    | `/items/?query=j` | `items#index`     |
+| [GET](#get-items1)    | `/items/1`        | `lists#show`      |
+| [POST](#post-items)   | `/items`          | `lists#create`    |
+| [PATCH](#patch-items1)  | `/items/1`        | `lists#update`    |
+| [DELETE](#delete-items1) | `/items/1`        | `lists#destroy`   |
 
 #### GET /items
 
@@ -570,9 +570,9 @@ HTTP/1.1 204 No Content
 
 | Verb   | URI Pattern    | Controller#Action  |
 |--------|----------------|--------------------|
-| POST   | `/contents`    | `contents#create`  |
-| PATCH  | `/contents/1`  | `contents#update`  |
-| DELETE | `/contents/1`  | `contents#destroy` |
+| [POST](#post-contents)   | `/contents`    | `contents#create`  |
+| [PATCH](#patch-contents1)  | `/contents/1`  | `contents#update`  |
+| [DELETE](#delete-contents1) | `/contents/1`  | `contents#destroy` |
 
 #### POST /contents
 
@@ -615,6 +615,30 @@ Content-Type: application/json; charset=utf-8
     }
   }
 }
+```
+
+#### PATCH /contents/1
+
+Request: 
+```sh
+curl --include --request PATCH http://localhost:3000/contents/$ID \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Token token=$TOKEN" \
+  --data '{
+    "content": {
+      "packed": true
+    }
+  }'
+```
+
+```sh
+ID=1 TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/content-patch.sh
+```
+
+Response:
+
+```md
+HTTP/1.1 204 No Content
 ```
 
 #### DELETE /contents/1
