@@ -311,7 +311,7 @@ Content-Type: application/json; charset=utf-8
 
 {
   "list": {
-    "id": 39,
+    "id": 3,
     "title": "camping",
     "contents": []
   }
@@ -320,7 +320,7 @@ Content-Type: application/json; charset=utf-8
 
 #### POST /clone/1
 
-A `POST` request to `/clone/:id` clones the provided list with all of its association. The cloned list's title will be "Copy of [original list title."
+A `POST` request to `/clone/:id` clones the provided list with all of its associations. The cloned list's title will be "Copy of [original list title."
 
 Request:
 
@@ -332,7 +332,7 @@ curl --include --request POST http://localhost:3000/clone/$ID \
 ```
 
 ```sh
-ID=1 TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/list-clone.sh
+ID=2 TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/list-clone.sh
 ```
 
 Response: 
@@ -342,11 +342,52 @@ Content-Type: application/json; charset=utf-8
 
 {
   "list": {
-    "id": 3,
+    "id": 4,
     "title": "Copy of camping",
     "contents": []
   }
 }
+```
+
+#### PATCH /lists/1
+
+Request:
+
+```sh
+curl --include --request PATCH http://localhost:3000/lists/$ID \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Token token=$TOKEN" \
+  --data '{
+    "list": {
+      "title": "Acadia Hiking"
+    }
+  }'
+```
+
+```sh
+ID=4 TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/list-update.sh
+```
+
+Response: 
+```md
+HTTP/1.1 204 No Content
+```
+
+#### DELETE /lists/1
+
+Request:
+```sh
+curl --include --request DELETE http://localhost:3000/lists/$ID \
+  --header "Authorization: Token token=$TOKEN"
+```
+
+```sh
+ID=4 TOKEN=33ad6372f795694b333ec5f329ebeaaa scripts/list-destroy.sh
+```
+
+Response:
+```md
+HTTP/1.1 204 No Content
 ```
 
 

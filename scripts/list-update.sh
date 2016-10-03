@@ -3,6 +3,6 @@ curl --include --request PATCH http://localhost:3000/lists/$ID \
   --header "Authorization: Token token=$TOKEN" \
   --data '{
     "list": {
-      "title": "Maine Camping June 2016"
+      "title": "Acadia Hiking"
     }
   }'
