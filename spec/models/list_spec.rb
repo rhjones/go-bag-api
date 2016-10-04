@@ -6,8 +6,25 @@ RSpec.describe List do
   end
 
   describe 'validations' do
+    def user_params
+      {
+        email: 'alice@example.com',
+        password: 'foobarbaz',
+        password_confirmation: 'foobarbaz'
+      }
+    end
+
+    before(:each) do
+      User.create!(user_params)
+      @token = User.first.token
+      @user_id = User.first.id
+    end
+
     def valid_params
-      { title: 'NH hiking' }
+      {
+        title: 'List title',
+        user: User.first
+      }
     end
 
     it 'validates the presence of a list\'s title' do
@@ -15,7 +32,12 @@ RSpec.describe List do
     end
 
     it 'list is invalid without title' do
-      invalid_params = {}
+      invalid_params = valid_params.select { |key, _| key == :user }
+      expect(List.create(invalid_params)).to be_invalid
+    end
+
+    it 'list is invalid without user' do
+      invalid_params = valid_params.select { |key, _| key == :title }
       expect(List.create(invalid_params)).to be_invalid
     end
   end
