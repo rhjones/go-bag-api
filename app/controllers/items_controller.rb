@@ -1,10 +1,16 @@
-class ItemsController < ApplicationController
+class ItemsController < OpenReadController
   before_action :set_item, only: [:show, :update, :destroy]
 
   # GET /items
   # GET /items.json
   def index
     @items = Item.all
+
+    @items = if params[:query]
+               Item.search(params[:query]).order('name ASC')
+             else
+               Item.all.order('name ASC')
+             end
 
     render json: @items
   end
@@ -30,8 +36,6 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
-    @item = Item.find(params[:id])
-
     if @item.update(item_params)
       head :no_content
     else
@@ -49,11 +53,11 @@ class ItemsController < ApplicationController
 
   private
 
-    def set_item
-      @item = Item.find(params[:id])
-    end
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
-    def item_params
-      params.require(:item).permit(:name)
-    end
+  def item_params
+    params.require(:item).permit(:name)
+  end
 end

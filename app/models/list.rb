@@ -1,6 +1,11 @@
 class List < ActiveRecord::Base
-  validates :title, presence: true
+  belongs_to :user
+  validates :title, :user, presence: true
+  validates :title, uniqueness: { scope: :user_id }
   has_many :items, through: :contents
   has_many :contents, dependent: :destroy
-  belongs_to :user
+
+  def self.default_scope
+    order(updated_at: :desc)
+  end
 end

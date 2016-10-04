@@ -1,19 +1,5 @@
-class ContentsController < ApplicationController
-  before_action :set_content, only: [:show, :update, :destroy]
-
-  # GET /contents
-  # GET /contents.json
-  def index
-    @contents = Content.all
-
-    render json: @contents
-  end
-
-  # GET /contents/1
-  # GET /contents/1.json
-  def show
-    render json: @content
-  end
+class ContentsController < ProtectedController
+  before_action :set_content, only: [:update, :destroy]
 
   # POST /contents
   # POST /contents.json
@@ -30,8 +16,6 @@ class ContentsController < ApplicationController
   # PATCH/PUT /contents/1
   # PATCH/PUT /contents/1.json
   def update
-    @content = Content.find(params[:id])
-
     if @content.update(content_params)
       head :no_content
     else
@@ -49,11 +33,11 @@ class ContentsController < ApplicationController
 
   private
 
-    def set_content
-      @content = Content.find(params[:id])
-    end
+  def set_content
+    @content = Content.find(params[:id])
+  end
 
-    def content_params
-      params.require(:content).permit(:item_id, :list_id, :packed)
-    end
+  def content_params
+    params.require(:content).permit(:item_id, :list_id, :packed)
+  end
 end
