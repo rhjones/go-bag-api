@@ -10,11 +10,21 @@ A Rails API for [Go Bag](https://github.com/rebekahheacock/go-bag), a packing li
 -   [`ruby`](https://www.ruby-lang.org/en/)
 -   [`postgres`](http://www.postgresql.org)
 -   [`deep_cloneable`](https://github.com/moiristo/deep_cloneable)
+-   [`shoulda-matchers`](https://github.com/thoughtbot/shoulda-matchers)
+
+## Testing
+
+Scripts are included in [`scripts`](scripts) to test built-in actions.
+
+Automated tests currently include:
+
+- Lists
+  - [spec/models/list_spec.rb](spec/models/list_spec.rb)
+- Users (tests provided as part of the General Assembly [Rails API Template](https://github.com/ga-wdi-boston/rails-api-template))
+  - [spec/requests/users_spec.rb](spec/requests/users_spec.rb)
 
 
 ## API Documentation
-
-Scripts are included in [`scripts`](scripts) to test built-in actions.
 
 - [Authentication](#authentication)
 - [Users](#users)
