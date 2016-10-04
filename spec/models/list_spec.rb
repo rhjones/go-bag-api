@@ -6,6 +6,22 @@ RSpec.describe List do
   end
 
   describe 'validations' do
+    it { should validate_presence_of(:title) }
+    it { should validate_presence_of(:user) }
+    it do
+      should validate_uniqueness_of(:title)
+        .scoped_to(:user_id)
+        .case_insensitive
+    end
+  end
+
+  describe 'associations' do
+    it { should belong_to(:user) }
+    it { should have_many(:contents) }
+    it { should have_many(:items).through(:contents) }
+  end
+
+  describe 'default scope' do
     def user_params
       {
         email: 'alice@example.com',
@@ -14,64 +30,19 @@ RSpec.describe List do
       }
     end
 
-    before(:each) do
-      User.create!(user_params)
-      @token = User.first.token
-      @user_id = User.first.id
+    before(:all) do
+      user = User.create(user_params)
+      @list_one = List.create(title: 'Created first', user: user)
+      @list_two = List.create(title: 'Created second', user: user)
     end
 
-    def valid_params
-      {
-        title: 'List title',
-        user: User.first
-      }
+    after(:all) do
+      List.delete_all
+      User.delete_all
     end
 
-    it 'validates the presence of a list\'s title' do
-      expect(List.create(valid_params)).to be_valid
-    end
-
-    it 'list is invalid without title' do
-      invalid_params = valid_params.select { |key, _| key == :user }
-      expect(List.create(invalid_params)).to be_invalid
-    end
-
-    it 'list is invalid without user' do
-      invalid_params = valid_params.select { |key, _| key == :title }
-      expect(List.create(invalid_params)).to be_invalid
-    end
-  end
-
-  # do I need to describe contents association as well?
-  # or, given that items association is through contents, is this sufficient?
-
-  describe 'items association' do
-    def items_association
-      described_class.reflect_on_association(:items)
-    end
-
-    it 'has the name items' do
-      expect(items_association).to_not be_nil
-      expect(items_association.name).to eq(:items)
-    end
-
-    it 'is a has_many association' do
-      expect(items_association.macro).to eq(:has_many)
-    end
-  end
-
-  describe 'user association' do
-    def user_association
-      described_class.reflect_on_association(:user)
-    end
-
-    it 'has the name user' do
-      expect(user_association).to_not be_nil
-      expect(user_association.name).to eq(:user)
-    end
-
-    it 'is a belongs_to association' do
-      expect(user_association.macro).to eq(:belongs_to)
+    it 'orders by descending updated_at order' do
+      expect(List.all).to eq([@list_two, @list_one])
     end
   end
 end
