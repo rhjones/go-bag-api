@@ -1,6 +1,6 @@
 # Go Bag API
 
-A Rails API for [Go Bag](https://github.com/rebekahheacock/go-bag), a packing list app. Includes authentication. Live at [https://go-bag.herokuapp.com](https://go-bag.herokuapp.com).
+A Rails API for [Go Bag](https://github.com/rebekahheacock/go-bag), a packing list app. Includes authentication. API is live at [https://go-bag.herokuapp.com](https://go-bag.herokuapp.com).
 
 **A detailed writeup of my development process is at [rebekahheacock.org: Go Bag](http://rebekahheacock.org/2016/10/go-bag/).**
 
