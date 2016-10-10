@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Lists API' do
   def list_params
     {
-      title: 'Hawaii Trip',
-      user_id: 1
+      title: 'New Example List',
+      user: user
     }
   end
 
@@ -16,54 +16,73 @@ RSpec.describe 'Lists API' do
     List.first
   end
 
+  def user_params
+    {
+      email: 'alice@example.com',
+      password: 'foobarbaz',
+      password_confirmation: 'foobarbaz'
+    }
+  end
+
+  def user
+    User.first
+  end
+
   before(:all) do
+    User.create!(user_params)
     List.create!(list_params)
   end
 
   after(:all) do
-    List.delete_all
+    List.destroy_all
+    User.destroy_all
   end
 
-  describe 'GET /lists' do
-    it 'lists all lists' do
-      get '/lists'
+  context 'while authenticated' do
+    
 
-      expect(response).to be_success
+    before(:each) do
+      # post '/sign-up', credentials: user_params
+      post '/sign-in', credentials: user_params
 
-      lists_response = JSON.parse(response.body)
-      expect(lists_response.length).to eq(lists.count)
-      expect(lists_response.first['title']).to eq(list[:title])
-    end
-  end
+      @token = JSON.parse(response.body)['user']['token']
 
-  describe 'GET /lists/:id' do
-    skip 'shows one list' do
-      # get "/lists/#{list.id}"
+      @user_id = JSON.parse(response.body)['user']['id']
+      @user = User.first
+      # @token = @user.token
+      puts "user.id #{user.id}"
+      puts "@user_id #{@user_id}"
+      puts "@user.id #{@user.id}"
 
-      # expect(response).to be_success
+      puts "current user.token #{user.token}"
+      puts "current @user.token #{@user.token}"
+      puts "current @token #{@token}"
 
-      # list_response = JSON.parse(response.body)
-      # expect(list_response['id']).not_to be_nil
-      # expect(list_response['title']).to eq(list[:title])
-    end
-  end
+      # def user_by_token
+      #   User.find_by(token: @token).id
+      # end
 
-  describe 'POST /lists' do
-    skip 'creates a list' do
-    end
-  end
+      # puts "user_by_token #{user_by_token}"
 
-  describe 'PATCH /lists/:id' do
-    def list_diff
-      { title: 'Scotland Trip' }
+      # List.create!(list_params)
     end
 
-    skip 'updates a list' do
-    end
-  end
+    describe 'GET /lists' do
+      it 'lists all lists' do
+        def headers
+          {
+            'HTTP_AUTHORIZATION' => "Token token=#{@token}"
+            # 'HTTP_AUTHORIZATION' => "Token token=#{@user.token}"
+          }
+        end
+        get '/lists', headers
 
-  describe 'DELETE /lists/:id' do
-    skip 'deletes a list' do
+        expect(response).to be_success
+
+        lists_response = JSON.parse(response.body)
+        expect(lists_response.length).to eq(lists.count)
+        expect(lists_response.first['title']).to eq(list[:title])
+      end
     end
   end
 end

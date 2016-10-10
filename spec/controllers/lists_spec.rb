@@ -38,59 +38,59 @@ RSpec.describe ListsController do
     end
   end
 
-  describe 'GET show' do
-    # before(:each) { get :show, id: list.id }
-    skip 'is successful' do
-      # expect(response.status).to eq(200)
-    end
+  # describe 'GET show' do
+  #   # before(:each) { get :show, id: list.id }
+  #   skip 'is successful' do
+  #     # expect(response.status).to eq(200)
+  #   end
 
-    skip 'renders a JSON response' do
-      # list_response = JSON.parse(response.body)
-      # expect(list_response['id']).not_to be_nil
-      # expect(list_response['title']).to eq(list[:title])
-      # # puts 'list response is '
-      # # puts list_response
-    end
+  #   skip 'renders a JSON response' do
+  #     # list_response = JSON.parse(response.body)
+  #     # expect(list_response['id']).not_to be_nil
+  #     # expect(list_response['title']).to eq(list[:title])
+  #     # # puts 'list response is '
+  #     # # puts list_response
+  #   end
 
-    # checks to make sure we have a hash (single list),
-    # not an array (multiple lists)
-    # this is extra/not strictly necessary
-    skip 'renders a hash' do
-      # list_response = JSON.parse(response.body)
-      # expect(list_response).to a_kind_of(Hash)
-    end
-  end
+  #   # checks to make sure we have a hash (single list),
+  #   # not an array (multiple lists)
+  #   # this is extra/not strictly necessary
+  #   skip 'renders a hash' do
+  #     # list_response = JSON.parse(response.body)
+  #     # expect(list_response).to a_kind_of(Hash)
+  #   end
+  # end
 
-  describe 'POST create' do
-    # before(:each) do
-    #   post :create, list: list_params, format: :json
-    # end
+  # describe 'POST create' do
+  #   # before(:each) do
+  #   #   post :create, list: list_params, format: :json
+  #   # end
 
-    skip 'is successful' do
-    end
+  #   skip 'is successful' do
+  #   end
 
-    skip 'renders a JSON response' do
-    end
-  end
+  #   skip 'renders a JSON response' do
+  #   end
+  # end
 
-  describe 'PATCH update' do
-    def list_diff
-      { title: 'Scotland Trip' }
-    end
+  # describe 'PATCH update' do
+  #   def list_diff
+  #     { title: 'Scotland Trip' }
+  #   end
 
-    # before(:each) do
-    #   patch :update, id: list.id, list: list_diff, format: :json
-    # end
+  #   # before(:each) do
+  #   #   patch :update, id: list.id, list: list_diff, format: :json
+  #   # end
 
-    skip 'is successful' do
-    end
+  #   skip 'is successful' do
+  #   end
 
-    skip 'renders a JSON response' do
-    end
-  end
+  #   skip 'renders a JSON response' do
+  #   end
+  # end
 
-  describe 'DELETE destroy' do
-    skip 'is successful and returns an empty response' do
-    end
-  end
+  # describe 'DELETE destroy' do
+  #   skip 'is successful and returns an empty response' do
+  #   end
+  # end
 end
